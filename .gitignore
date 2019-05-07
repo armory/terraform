@@ -1,3 +1,5 @@
 .DS_Store
 eks/terraform.tfstate
 eks/terraform.tfstate.backup
+.DS_Store
+*.tfstate
