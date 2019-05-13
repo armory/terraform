@@ -1,0 +1,69 @@
+#
+# Outputs: there are really no terraform outputs, these files are stored in an S3 bucket
+#
+
+locals {
+  kubeconfig-sa = <<KUBECONFIG
+apiVersion: v1
+clusters:
+- cluster:
+    server: ${aws_eks_cluster.aws-eks.endpoint}
+    certificate-authority-data: ${aws_eks_cluster.aws-eks.certificate_authority.0.data}
+  name: ${var.cluster-name}
+contexts:
+- context:
+    cluster: ${var.cluster-name}
+    user: aws
+  name: ${var.cluster-name}
+current-context: ${var.cluster-name}
+kind: Config
+preferences: {}
+users:
+- name: aws
+  user:
+    token: ${lookup(data.kubernetes_secret.spinnaker-token.data, "token", "")}
+KUBECONFIG
+
+  kubeconfig = <<KUBECONFIG
+apiVersion: v1
+clusters:
+- cluster:
+    server: ${aws_eks_cluster.aws-eks.endpoint}
+    certificate-authority-data: ${aws_eks_cluster.aws-eks.certificate_authority.0.data}
+  name: ${var.cluster-name}
+contexts:
+- context:
+    cluster: ${var.cluster-name}
+    user: aws
+  name: ${var.cluster-name}
+current-context: ${var.cluster-name}
+kind: Config
+preferences: {}
+users:
+- name: aws
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      command: heptio-authenticator-aws
+      args:
+        - "token"
+        - "-i"
+        - "${var.cluster-name}"
+KUBECONFIG
+}
+
+resource "aws_s3_bucket_object" "kubeconfig-sa" {
+  bucket       = "${var.kubeconfig-bucket}"
+  key          = "${var.kubeconfig-key}/kubeconfig-${var.cluster-name}-sa"
+  content      = "${local.kubeconfig-sa}"
+  content_type = "text/plain"
+  acl          = "bucket-owner-full-control"
+}
+
+resource "aws_s3_bucket_object" "kubeconfig" {
+  bucket       = "${var.kubeconfig-bucket}"
+  key          = "${var.kubeconfig-key}/kubeconfig-${var.cluster-name}"
+  content      = "${local.kubeconfig}"
+  content_type = "text/plain"
+  acl          = "bucket-owner-full-control"
+}
