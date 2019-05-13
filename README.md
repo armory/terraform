@@ -12,3 +12,4 @@ This script creates an **Api Gateway**, which is AWS service that allows users t
 ## EKS without VPC Terraform Script
 
 This script creates a **EKS** infrastructure using **AWS** as a Provider based on a already existing **VPC**.  
+
