@@ -52,11 +52,3 @@ resource "kubernetes_cluster_role_binding" "spinnaker-cluster-role-binding" {
     }
     depends_on = ["kubernetes_service_account.spinnaker-sa"]
 }
- 
-resource "kubernetes_namespace" "initial-namespace" {
-  metadata {
-    name = "${var.initial-namespace}"
-  }
-  depends_on = ["kubernetes_service_account.spinnaker-sa"]
-}
-

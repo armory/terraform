@@ -4,14 +4,16 @@
 
 variable "cluster-name" {
   type    = "string"
+  default = "spinnaker"
 }
 
 variable "ec2-instance-type" {
   type    = "string"
+  default = "m5.xlarge"
 }
 
 variable "max-ec2-instances" {
-  default = 1 
+  default = 3 
 }
 
 variable "min-ec2-instances" {
@@ -32,12 +34,6 @@ variable "provider-region" {
   description = "Region used by terraform aws provider."
 }
 
-variable "provider-profile" {
-  type        = "string"
-  default     = "default"
-  description = "Profile of AWS credentials file to use"
-}
-
 variable "vpn-cidr" {
   type        = "string"
   description = "CIDR block of IP addresses allowed to connect to the cluster from the outside world."
@@ -54,15 +50,6 @@ variable "master-users" {
   description = "List of ARN's of master users of the cluster."
 }
 
-variable "aws-ami-eks" {
-  type        = "string"
-  description = "Amazon EKS AMI Account ID."
-}
-
-variable "create_vpc" {
-  type        = "string"
-}
-
 variable "vpc-id" {
   type        = "string"
 }
@@ -71,10 +58,6 @@ variable "subnet-3rd-octet" {
   description = "Third octet of the subnets for this cluster. Ex: 3"
 }
 
-variable "initial-namespace" {
-  type        = "string"
-  description = "Name of the namespace to create in the cluster."
-}
 
 variable "igateway-id" {
   type        = "string"

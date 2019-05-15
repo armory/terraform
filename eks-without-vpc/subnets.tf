@@ -12,7 +12,7 @@ resource "aws_subnet" "aws-eks" {
 
   tags = "${
     map(
-     "Name", "reltio-${var.cluster-name}-node",
+     "Name", "spinn-${var.cluster-name}-node",
      "kubernetes.io/cluster/${var.cluster-name}", "shared",
     )
   }"
