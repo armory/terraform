@@ -30,3 +30,8 @@ users:
         - "${var.cluster-name}"
 KUBECONFIG
 }
+
+#replace by output in order to print the kubeconfig
+ output "kubeconfig" {
+  value = "${local.kubeconfig}"
+}

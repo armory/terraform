@@ -146,4 +146,7 @@ resource "aws_autoscaling_group" "aws-eks" {
     value               = "owned"
     propagate_at_launch = true
   }
+
+  depends_on = ["aws_eks_cluster.aws-eks"]
+
 }
