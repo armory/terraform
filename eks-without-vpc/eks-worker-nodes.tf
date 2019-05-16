@@ -8,7 +8,7 @@
 #
 
 resource "aws_iam_role" "aws-eks-node" {
-  name = "spinn-${var.cluster-name}-node"
+  name = "${var.cluster-name}-node-role"
 
   assume_role_policy = <<POLICY
 {
@@ -47,7 +47,7 @@ resource "aws_iam_instance_profile" "aws-eks-node" {
 }
 
 resource "aws_security_group" "aws-eks-node" {
-  name        = "spinn-${var.cluster-name}-node"
+  name        = "${var.cluster-name}-node-sg"
   description = "Security group for all nodes in the cluster"
   vpc_id      = "${var.vpc-id}"
 
@@ -60,7 +60,7 @@ resource "aws_security_group" "aws-eks-node" {
 
   tags = "${
     map(
-     "Name", "spinn-${var.cluster-name}-node",
+     "Name", "${var.cluster-name}-node",
      "kubernetes.io/cluster/${var.cluster-name}", "owned",
     )
   }"
@@ -114,7 +114,7 @@ resource "aws_launch_configuration" "aws-eks" {
   iam_instance_profile        = "${aws_iam_instance_profile.aws-eks-node.name}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
   instance_type               = "${var.ec2-instance-type}"
-  name_prefix                 = "spinn-${var.cluster-name}"
+  name_prefix                 = "${var.cluster-name}-node"
   security_groups             = ["${aws_security_group.aws-eks-node.id}"]
   user_data_base64            = "${base64encode(local.aws-eks-node-userdata)}"
 
@@ -132,12 +132,12 @@ resource "aws_autoscaling_group" "aws-eks" {
   launch_configuration = "${aws_launch_configuration.aws-eks.id}"
   max_size             = "${var.max-ec2-instances}" 
   min_size             = "${var.min-ec2-instances}" 
-  name                 = "spinn-${var.cluster-name}"
-  vpc_zone_identifier  = ["${aws_subnet.aws-eks.*.id}"]
+  name                 = "${var.cluster-name}-asg"
+  vpc_zone_identifier  = ["${aws_subnet.aws-eks-subnet-1.id}", "${aws_subnet.aws-eks-subnet-2.id}"]
 
   tag {
     key                 = "Name"
-    value               = "spinn-${var.cluster-name}"
+    value               = "${var.cluster-name}"
     propagate_at_launch = true
   }
 

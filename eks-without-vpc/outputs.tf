@@ -23,7 +23,7 @@ users:
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1alpha1
-      command: heptio-authenticator-aws
+      command: aws-iam-authenticator
       args:
         - "token"
         - "-i"
@@ -31,7 +31,7 @@ users:
 KUBECONFIG
 }
 
-#replace by output in order to print the kubeconfig
- output "kubeconfig" {
+output "kubeconfig" {
   value = "${local.kubeconfig}"
 }
+
