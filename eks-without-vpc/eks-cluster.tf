@@ -7,7 +7,11 @@
 
 #*
 resource "aws_iam_role" "aws-eks-cluster" {
+<<<<<<< HEAD
   name = "spinn-${var.cluster-name}-cluster"
+=======
+  name = "${var.cluster-name}-cluster-role"
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
 
   assume_role_policy = <<POLICY
 {
@@ -36,7 +40,11 @@ resource "aws_iam_role_policy_attachment" "aws-eks-cluster-AmazonEKSServicePolic
 }
 
 resource "aws_security_group" "aws-eks-cluster" {
+<<<<<<< HEAD
   name        = "spinn-${var.cluster-name}-cluster"
+=======
+  name        = "${var.cluster-name}-cluster-sg"
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
   description = "Cluster communication with worker nodes"
   vpc_id      = "${var.vpc-id}"
 
@@ -48,7 +56,11 @@ resource "aws_security_group" "aws-eks-cluster" {
   }
 
   tags {
+<<<<<<< HEAD
     Name = "spinn-${var.cluster-name}"
+=======
+    Name = "${var.cluster-name}-cluster"
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
   }
 }
 
@@ -63,7 +75,11 @@ resource "aws_security_group_rule" "aws-eks-cluster-ingress-node-https" {
 }
 
 resource "aws_security_group_rule" "aws-eks-cluster-ingress-workstation-https" {
+<<<<<<< HEAD
   cidr_blocks       = ["${var.vpn-cidr}"]
+=======
+  cidr_blocks       = ["${var.inbound-cidr}"]
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
   description       = "Allow workstation to communicate with the cluster API Server"
   from_port         = 443
   protocol          = "tcp"
@@ -73,12 +89,20 @@ resource "aws_security_group_rule" "aws-eks-cluster-ingress-workstation-https" {
 }
 
 resource "aws_eks_cluster" "aws-eks" {
+<<<<<<< HEAD
   name     = "spinn-${var.cluster-name}-cluster"
+=======
+  name     = "${var.cluster-name}"
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
   role_arn = "${aws_iam_role.aws-eks-cluster.arn}"
 
   vpc_config {
     security_group_ids = ["${aws_security_group.aws-eks-cluster.id}"]
+<<<<<<< HEAD
     subnet_ids         = ["${aws_subnet.aws-eks.*.id}"]
+=======
+    subnet_ids         = ["${aws_subnet.aws-eks-subnet-1.id}", "${aws_subnet.aws-eks-subnet-2.id}"]
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
   }
 
   depends_on = [
@@ -86,4 +110,8 @@ resource "aws_eks_cluster" "aws-eks" {
     "aws_iam_role_policy_attachment.aws-eks-cluster-AmazonEKSServicePolicy",
     "aws_iam_role.aws-eks-cluster"
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711

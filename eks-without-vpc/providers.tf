@@ -5,7 +5,10 @@
 provider "aws" {
   version = "~> 1.60.0"
   region = "${var.provider-region}"
+<<<<<<< HEAD
   profile = "${var.provider-profile}"
+=======
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
 }
 
 # Using these data sources allows the configuration to be

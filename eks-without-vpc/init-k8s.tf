@@ -18,6 +18,7 @@ ROLES
 
     depends_on = ["aws_autoscaling_group.aws-eks"]
 
+<<<<<<< HEAD
 }
 
 resource "kubernetes_service_account" "spinnaker-sa" {
@@ -60,3 +61,6 @@ resource "kubernetes_namespace" "initial-namespace" {
   depends_on = ["kubernetes_service_account.spinnaker-sa"]
 }
 
+=======
+}
+>>>>>>> 67192546e927e3218dd143d43da29b6166495711
