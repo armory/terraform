@@ -29,3 +29,5 @@ Name="name",Values="amzn-ami-vpc-nat*"`
 ## Result
 
 Nat, table route, security group and private subnet should be created after run the script. 
+
+![Private Subnet Diagram](http://github.com/armory/terraform/blob/private-subnet/private-subnet/AWS%20Private%20Subnet.jpeg?raw=true)
