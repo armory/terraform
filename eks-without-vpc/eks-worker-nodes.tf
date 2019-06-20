@@ -8,11 +8,7 @@
 #
 
 resource "aws_iam_role" "aws-eks-node" {
-<<<<<<< HEAD
-  name = "spinn-${var.cluster-name}-node"
-=======
   name = "${var.cluster-name}-node-role"
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
 
   assume_role_policy = <<POLICY
 {
@@ -51,11 +47,7 @@ resource "aws_iam_instance_profile" "aws-eks-node" {
 }
 
 resource "aws_security_group" "aws-eks-node" {
-<<<<<<< HEAD
-  name        = "spinn-${var.cluster-name}-node"
-=======
   name        = "${var.cluster-name}-node-sg"
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
   description = "Security group for all nodes in the cluster"
   vpc_id      = "${var.vpc-id}"
 
@@ -68,11 +60,7 @@ resource "aws_security_group" "aws-eks-node" {
 
   tags = "${
     map(
-<<<<<<< HEAD
-     "Name", "spinn-${var.cluster-name}-node",
-=======
      "Name", "${var.cluster-name}-node",
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
      "kubernetes.io/cluster/${var.cluster-name}", "owned",
     )
   }"
@@ -126,11 +114,7 @@ resource "aws_launch_configuration" "aws-eks" {
   iam_instance_profile        = "${aws_iam_instance_profile.aws-eks-node.name}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
   instance_type               = "${var.ec2-instance-type}"
-<<<<<<< HEAD
-  name_prefix                 = "spinn-${var.cluster-name}"
-=======
   name_prefix                 = "${var.cluster-name}-node"
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
   security_groups             = ["${aws_security_group.aws-eks-node.id}"]
   user_data_base64            = "${base64encode(local.aws-eks-node-userdata)}"
 
@@ -148,21 +132,12 @@ resource "aws_autoscaling_group" "aws-eks" {
   launch_configuration = "${aws_launch_configuration.aws-eks.id}"
   max_size             = "${var.max-ec2-instances}" 
   min_size             = "${var.min-ec2-instances}" 
-<<<<<<< HEAD
-  name                 = "spinn-${var.cluster-name}"
-  vpc_zone_identifier  = ["${aws_subnet.aws-eks.*.id}"]
-
-  tag {
-    key                 = "Name"
-    value               = "spinn-${var.cluster-name}"
-=======
   name                 = "${var.cluster-name}-asg"
   vpc_zone_identifier  = ["${aws_subnet.aws-eks-subnet-1.id}", "${aws_subnet.aws-eks-subnet-2.id}"]
 
   tag {
     key                 = "Name"
     value               = "${var.cluster-name}"
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
     propagate_at_launch = true
   }
 
@@ -171,10 +146,7 @@ resource "aws_autoscaling_group" "aws-eks" {
     value               = "owned"
     propagate_at_launch = true
   }
-<<<<<<< HEAD
-=======
 
   depends_on = ["aws_eks_cluster.aws-eks"]
 
->>>>>>> 67192546e927e3218dd143d43da29b6166495711
 }
