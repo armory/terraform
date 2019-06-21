@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "elasticache-subnet-grp" {
   name       = "elasticache-subnet-grp"
-  subnet_ids = "${var.subnet-cidrs}"
+  subnet_ids = "${var.subnet-ids}"
 }
 
 resource "aws_elasticache_replication_group" "elasticache-repl-grp" {

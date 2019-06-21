@@ -5,7 +5,7 @@
 locals {
   
   endpoint = <<ENDPOINT
-    ${aws_elasticache_replication_group.elasticache-repl-grp.primary_endpoint_address}
+    	${aws_elasticache_replication_group.elasticache-repl-grp.primary_endpoint_address}
   ENDPOINT
 }
 
