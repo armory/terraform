@@ -2,7 +2,7 @@
 # Variables Configuration
 #
 
-variable "subnet-cidrs" {
+variable "subnet-ids" {
   type        = "list"
   description = "CIDR block of IP addresses allocated for the subnets of the cluster"
 }
