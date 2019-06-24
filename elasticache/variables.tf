@@ -2,9 +2,9 @@
 # Variables Configuration
 #
 
-variable "subnet-cidrs" {
+variable "subnet-ids" {
   type        = "list"
-  description = "CIDR block of IP addresses allocated for the subnets of the cluster"
+  description = "list of subnets ids, this needs to be the same as the cluster to allow spinnaker access elasticache."
 }
 
 variable "availability_zones" {
