@@ -4,7 +4,7 @@
 
 variable "subnet-ids" {
   type        = "list"
-  description = "CIDR block of IP addresses allocated for the subnets of the cluster"
+  description = "list of ids for the subnets."
 }
 
 variable "availability_zones" {
