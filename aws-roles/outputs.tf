@@ -10,5 +10,5 @@ locals {
 }
 
 output "commands" {
-  value = "Run this commands in order: \n1) ${local.spinnaccount} \n2) ${local.account} \n3) ${local.rolename} \n4) ${local.halconfig} \n5) ${local.halenable} \n6) ${local.haldeploy}"
+  value = "Run this commands in order: \n${local.spinnaccount} \n${local.account} \n${local.rolename} \n${local.halconfig} \n${local.halenable} \n${local.haldeploy}"
 }
