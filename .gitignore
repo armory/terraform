@@ -3,6 +3,9 @@ eks/terraform.tfstate
 eks/terraform.tfstate.backup
 .DS_Store
 *.tfstate
+*.tfstate.backup
 eks-without-vpc/.terraform/
 eks-without-vpc/terraform.tfstate.backup
 eks-without-vpc/terraform.tfstate
+eks/.terraform/
+aws-roles/.terraform/
