@@ -4,7 +4,7 @@
 
 variable "subnet-ids" {
   type        = "list"
-  description = "list of ids for the subnets."
+  description = "list of subnets ids, this needs to be the same as the cluster to allow spinnaker access elasticache."
 }
 
 variable "availability_zones" {
