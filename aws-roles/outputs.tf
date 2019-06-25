@@ -7,8 +7,9 @@ locals {
   halconfig = "hal config provider aws account add $AWS_ACCOUNT_NAME --account-id $ACCOUNT_ID --assume-role $ROLE_NAME"
   halenable = "hal config provider aws enable"
   haldeploy = "hal deploy apply"
+  halregion = "hal config provider aws account edit $AWS_ACCOUNT_NAME --regions us-east-1,us-west-2"
 }
 
 output "commands" {
-  value = "Run this commands in order: \n${local.spinnaccount} \n${local.account} \n${local.rolename} \n${local.halconfig} \n${local.halenable} \n${local.haldeploy}"
+  value = "Run this commands in order: \n${local.spinnaccount} \n${local.account} \n${local.rolename} \n${local.halconfig} \n${local.halenable} \n${local.halregion} \n${local.haldeploy}"
 }
