@@ -13,7 +13,7 @@ variable "power-policy-arn" {
   description = "PowerPolicy ARN"
 }
 
-variable "arn-node" {
+variable "node-name" {
   type        = "string"
   description = "Node ARN"
 }
@@ -22,12 +22,6 @@ variable "managed-role-name" {
   type        = "string"
   default     = "SpinnakerManagedRole"
   description = "Role Name"
-}
-
-variable "pass-role-name" {
-  type        = "string"
-  default     = "PassRole"
-  description = "PassRole"
 }
 
 variable "base-role-name" {
@@ -44,4 +38,9 @@ variable "role-policy" {
 variable "managing-policy" {
   type        = "string"
   default     = "TestDevSpinnakerManagingPolicy"
+}
+
+variable "managing-role-instance-profile" {
+  type        = "string"
+  default     = "managed-role-instance-profile"
 }

@@ -62,3 +62,10 @@ EOF
     "aws_iam_role.managedRole"
   ]
 }
+
+
+resource "aws_iam_role_policy_attachment" "node-policy-attach" {
+  role       = "${var.node-name}"
+  policy_arn = "${aws_iam_policy.managing-policy.arn}"
+
+}

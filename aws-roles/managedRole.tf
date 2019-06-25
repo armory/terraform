@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "passRole" {
-  name = "${var.pass-role-name}"
+  name = "PassRole"
   role = "${aws_iam_role.managedRole.id}"
 
   policy = <<EOF
@@ -8,7 +8,7 @@ resource "aws_iam_role_policy" "passRole" {
   "Statement": [
     {
       "Action": [
-        "iam:${var.pass-role-name}"
+        "iam:PassRole"
       ],
       "Effect": "Allow",
       "Resource": "*"
@@ -30,7 +30,7 @@ resource "aws_iam_role" "managedRole" {
     {
       "Action": "sts:AssumeRole",
       "Principal": {
-        "AWS": "${var.arn-node}"
+        "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.node-name}"
       },
       "Effect": "Allow",
       "Sid": ""
@@ -40,7 +40,7 @@ resource "aws_iam_role" "managedRole" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "test-attach" {
+resource "aws_iam_role_policy_attachment" "policy-attach" {
   role       = "${aws_iam_role.managedRole.name}"
   policy_arn = "${var.power-policy-arn}"
 
