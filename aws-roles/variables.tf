@@ -8,11 +8,6 @@ variable "provider-profile" {
   description = "Profile of AWS credentials file to use"
 }
 
-variable "power-policy-arn" {
-  type        = "string"
-  description = "PowerPolicy ARN"
-}
-
 variable "node-name" {
   type        = "string"
   description = "Node ARN"

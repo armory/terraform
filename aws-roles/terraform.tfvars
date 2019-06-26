@@ -1,6 +1,5 @@
 provider-region = "us-east-1"
 provider-profile = "default"
-power-policy-arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 node-name = "armory-spin-hal-aws-ps-dev-node"
 managed-role-name = "SpinnakerManagedRole"
 managing-policy = "SpinnakerManagingPolicy"

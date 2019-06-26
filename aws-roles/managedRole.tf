@@ -42,7 +42,7 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "policy-attach" {
   role       = "${aws_iam_role.managedRole.name}"
-  policy_arn = "${var.power-policy-arn}"
+  policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 
   depends_on = [
     "aws_iam_role.managedRole"
