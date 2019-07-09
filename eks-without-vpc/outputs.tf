@@ -1,5 +1,5 @@
 #
-# Outputs: there are really no terraform outputs, these files are stored in an S3 bucket
+# Outputs
 #
 
 locals {
