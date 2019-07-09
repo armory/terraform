@@ -1,26 +1,23 @@
-# EKS without VPC
+# Terraform scripts for creating an EKS cluster
 
-This script creates a **EKS** infrastructure using **AWS** as a Provider based on a already existing **VPC**.  
+These scripts create an **EKS** kubernetes cluster using **AWS** as a Terraform provider, located in an existing **VPC**.  
 
-## Variables
+## Mandatory variables
 
 In the file "terraform.tfvars" you need to set some variables in order to execute properly.
 
-- vpc-id: The VPC id from an already exist VPC
-- initial-namespace: The initial namespace
-- aws-ami-eks: the image ID for EKS example: 602401143452
-- igateway-id: The Internet Gateway ID already created
-- _arn:aws:iam_ same for the "username": the amazon resource name
+- `vpc-id`: Identifier of an existing VPC.
+- `subnet-1-cidr` and `subnet-2-cidr`: CIDR blocks to assign to the new subnets that will be created.
+- `igateway-id`: Identifier of an existing Internet Gateway.
+- `provider-region`: Region used with the AWS credentials running the scripts.
 
 ## How to Use
 
     terraform init 
-    terraform plan -var-file=terraform.tfvars
-    terraform apply -var-file=terraform.tfvars
+    terraform plan
+    terraform apply
 
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
+## Outputs
 
-## Result
-
-After run the script the infrastructure should be created and the output is the kubeconfig necessary to connect to the cluster.
+Kubeconfig file used for connecting to the cluster, using aws-iam-authenticator as token provider.
 
