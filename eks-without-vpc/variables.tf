@@ -27,6 +27,11 @@ variable "igateway-id" {
   description = "Identifier of an internet gateway associated with the VPC."
 }
 
+variable "cluster-master-version" {
+  type    = "string"
+  default = "1.12"
+}
+
 variable "ec2-instance-type" {
   type    = "string"
   default = "m5.xlarge"

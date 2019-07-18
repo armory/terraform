@@ -76,6 +76,8 @@ resource "aws_eks_cluster" "aws-eks" {
   name     = "${var.cluster-name}"
   role_arn = "${aws_iam_role.aws-eks-cluster.arn}"
 
+  version  = "${var.cluster-master-version}"
+
   vpc_config {
     security_group_ids = ["${aws_security_group.aws-eks-cluster.id}"]
     subnet_ids         = ["${aws_subnet.aws-eks-subnet-1.id}", "${aws_subnet.aws-eks-subnet-2.id}"]

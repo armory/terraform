@@ -16,6 +16,6 @@ ROLES
     mapUsers = "${var.master-users}"
   }
 
-    depends_on = ["aws_autoscaling_group.aws-eks"]
+  depends_on = ["aws_autoscaling_group.aws-eks"]
 
 }
