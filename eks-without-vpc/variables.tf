@@ -70,4 +70,3 @@ variable "master-users" {
   type        = "string"
   description = "List of ARN's of master users of the cluster."
 }
-

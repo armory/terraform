@@ -47,4 +47,3 @@ resource "aws_route_table_association" "aws-eks-subnet-2" {
   subnet_id      = "${aws_subnet.aws-eks-subnet-2.id}"
   route_table_id = "${aws_route_table.aws-eks.id}"
 }
-
