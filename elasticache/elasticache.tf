@@ -8,7 +8,7 @@ resource "aws_elasticache_replication_group" "elasticache-repl-grp" {
   availability_zones            = "${var.availability_zones}"
   replication_group_id          = "spin-repl-grp"
   replication_group_description = "Replication group for Elasticache Spin"
-  node_type                     = "cache.r4.large"
+  node_type                     = "cache.r5.large"
   number_cache_clusters         = 2
   parameter_group_name          = "${aws_elasticache_parameter_group.default.id}"
   engine                        = "redis"
