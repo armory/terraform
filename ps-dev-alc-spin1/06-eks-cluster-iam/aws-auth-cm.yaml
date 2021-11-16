@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::569630529054:role/alc-test-op2-workers-NodeInstanceRole-1OX1DNUIT80XK
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+    - rolearn: arn:aws:iam::569630529054:role/okta-user-admin
+      username: okta-user-admin
+      groups:
+        - system:masters
+  mapUsers: |
+    - userarn: arn:aws:iam::569630529054:user/alchen
+      username: alchen
+      groups:
+        - system:masters
+    - userarn: arn:aws:iam::569630529054:user/kevin
+      username: alchen
+      groups:
+        - system:masters
